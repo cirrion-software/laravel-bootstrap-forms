@@ -1,13 +1,13 @@
 <?php
 
-namespace NetoJose\Bootstrap4Forms;
+namespace Cirrion\LaravelBootstrapForms;
 
 use Illuminate\Support\ViewErrorBag;
 
 class FormBuilder
 {
 
-    private $_attrs = [];
+    private $attrs = [];
 
     public function set($key, $value)
     {
@@ -152,10 +152,10 @@ class FormBuilder
                 $label = $label['label'];
             }
             $attrs = $this->buildHtmlAttrs([
-                'value'		=> $value,
-                'hidden'	=> in_array('hidden', $config),
-                'disabled'	=> in_array('disabled', $config),
-                'selected'	=> in_array(strval($value), $arrValues),
+                'value'        => $value,
+                'hidden'    => in_array('hidden', $config),
+                'disabled'    => in_array('disabled', $config),
+                'selected'    => in_array(strval($value), $arrValues),
             ], false);
             $optionsList .= '<option ' . $attrs . '>' . $label . '</option>';
         }
@@ -230,9 +230,9 @@ class FormBuilder
         $type = $isRadioOrCheckbox ? $render : $type;
 
         $class = 'form-check-input';
-        if($custom){
-	        $class = $this->customClass('input');
-        }elseif (!$isRadioOrCheckbox) {
+        if ($custom) {
+            $class = $this->customClass('input');
+        } elseif (!$isRadioOrCheckbox) {
             $class = 'form-control';
             switch ($type) {
                 case 'file':
@@ -297,11 +297,11 @@ class FormBuilder
     {
         extract($this->get('label', 'formInline', 'render', 'custom'));
 
-	    $class = '';
-        if($custom){
-        	$class = $this->customClass('label');
-        } elseif (in_array($render, ['checkbox', 'radio'])){
-        	$class = 'form-check-label';
+        $class = '';
+        if ($custom) {
+            $class = $this->customClass('label');
+        } elseif (in_array($render, ['checkbox', 'radio'])) {
+            $class = 'form-check-label';
         }
 
         if ($formInline) {
@@ -354,19 +354,19 @@ class FormBuilder
         $attrs          = $wrapperAttrs ?? [];
         $attrs['class'] = $this->createAttrsList(
             $custom ? $this->customClass('wrapper') : '',
-	        $attrs['class'] ?? null,
-	        $formInline ? 'input-group' : 'form-group'
+            $attrs['class'] ?? null,
+            $formInline ? 'input-group' : 'form-group'
         );
         $attributes = $this->buildHtmlAttrs($attrs, false);
 
-        if($custom && $type === 'file'){
-        	$placeholder = $label;
-        	$this->set('custom', false);
-        	$label = $this->renderLabel();
-	        $this->set('custom', true);
-	        return '<div class="form-group">' . $label . '<div ' . $attributes . '>' . $placeholder . $input . $helpText . $error . '</div></div>';
-        }else{
-	        return '<div ' . $attributes . '>' . $label . $input . $helpText . $error . '</div>';
+        if ($custom && $type === 'file') {
+            $placeholder = $label;
+            $this->set('custom', false);
+            $label = $this->renderLabel();
+            $this->set('custom', true);
+            return '<div class="form-group">' . $label . '<div ' . $attributes . '>' . $placeholder . $input . $helpText . $error . '</div></div>';
+        } else {
+            return '<div ' . $attributes . '>' . $label . $input . $helpText . $error . '</div>';
         }
     }
 
@@ -376,9 +376,9 @@ class FormBuilder
 
         $attrs = $wrapperAttrs ?? [];
         $attrs['class'] = $this->createAttrsList(
-	        $custom ? $this->customClass('wrapper') : 'form-check',
-	        [$inline, ($custom ? 'form-check-inline' : 'custom-control-inline')],
-	        $attrs['class'] ?? null
+            $custom ? $this->customClass('wrapper') : 'form-check',
+            [$inline, ($custom ? 'form-check-inline' : 'custom-control-inline')],
+            $attrs['class'] ?? null
         );
         $attributes = $this->buildHtmlAttrs($attrs, false);
         $label = $this->renderLabel();
@@ -463,61 +463,61 @@ class FormBuilder
 
     private function customClass(string $element = 'input')
     {
-    	extract($this->get('type', 'size', 'inline', 'render'));
+        extract($this->get('type', 'size', 'inline', 'render'));
 
-    	$type = $type ?? $render;
-    	$input = $element === 'input';
-	    $wrapper = $element === 'wrapper';
-    	$label = $element === 'label';
+        $type = $type ?? $render;
+        $input = $element === 'input';
+        $wrapper = $element === 'wrapper';
+        $label = $element === 'label';
 
-	    if($input){
-	    	$class = 'custom-control-input';
-	    } elseif($wrapper){
-	    	$class = 'custom-control' . (isset($inline) && $inline ? ' custom-control-inline' : '');
-	    } else {
-	    	$class = 'custom-control-label';
-	    }
+        if ($input) {
+            $class = 'custom-control-input';
+        } elseif ($wrapper) {
+            $class = 'custom-control' . (isset($inline) && $inline ? ' custom-control-inline' : '');
+        } else {
+            $class = 'custom-control-label';
+        }
 
-	    switch($type){
-		    case 'checkbox':
-			    if($wrapper){
-				    $class .= ' custom-checkbox';
-			    }
-			    break;
-		    case 'radio':
-			    if($wrapper){
-				    $class .= ' custom-radio';
-			    }
-			    break;
-		    case 'switch':
-			    if($wrapper){
-				    $class .= ' custom-switch';
-			    }
-			    break;
-		    case 'select':
-			    if($input){
-				    $class = 'custom-select';
-				    $class = $size ? $class . '-' . $size : $class;
-			    } elseif($label || $wrapper){
-			    	$class = '';
-			    }
-			    break;
-		    case 'range':
-			    $class = $input ? 'custom-range' : '';
-			    break;
-		    case 'file':
-		    	if($wrapper) {
-		    		$class = 'custom-file';
-			    } elseif($input) {
-		    		$class = 'custom-file-input';
-			    } else{
-		    	    $class = 'custom-file-label';
-			    }
-			    break;
-		    default:
-		    	// do nothing
-	    }
-	    return $class;
+        switch ($type) {
+            case 'checkbox':
+                if ($wrapper) {
+                    $class .= ' custom-checkbox';
+                }
+                break;
+            case 'radio':
+                if ($wrapper) {
+                    $class .= ' custom-radio';
+                }
+                break;
+            case 'switch':
+                if ($wrapper) {
+                    $class .= ' custom-switch';
+                }
+                break;
+            case 'select':
+                if ($input) {
+                    $class = 'custom-select';
+                    $class = $size ? $class . '-' . $size : $class;
+                } elseif ($label || $wrapper) {
+                    $class = '';
+                }
+                break;
+            case 'range':
+                $class = $input ? 'custom-range' : '';
+                break;
+            case 'file':
+                if ($wrapper) {
+                    $class = 'custom-file';
+                } elseif ($input) {
+                    $class = 'custom-file-input';
+                } else {
+                    $class = 'custom-file-label';
+                }
+                break;
+            default:
+                // do nothing
+        }
+        return $class;
     }
 
     private function createAttrsList(...$items)

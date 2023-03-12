@@ -1,6 +1,6 @@
 <?php
 
-namespace NetoJose\Bootstrap4Forms;
+namespace Cirrion\LaravelBootstrapForms;
 
 /**
  * FormService class
@@ -442,19 +442,19 @@ class FormService
         return $this->_radioOrCheckbox('radio', $name, $label, $value, $checked);
     }
 
-	/**
-	 * Create a switch input
-	 *
-	 * @param string $name
-	 * @param string $value
-	 * @param string $label
-	 * @param bool   $checked
-	 * @return FormService
-	 */
-	public function switch(string $name = null, string $label = null, string $value = null, bool $checked = null): FormService
-	{
-		return $this->_radioOrCheckbox('checkbox', $name, $label, $value, $checked)->type('switch');
-	}
+    /**
+     * Create a switch input
+     *
+     * @param string $name
+     * @param string $value
+     * @param string $label
+     * @param bool   $checked
+     * @return FormService
+     */
+    public function switch(string $name = null, string $label = null, string $value = null, bool $checked = null): FormService
+    {
+        return $this->_radioOrCheckbox('checkbox', $name, $label, $value, $checked)->type('switch');
+    }
 
     /**
      * Set inline input style
@@ -618,16 +618,16 @@ class FormService
         return $this->_set('size', $size);
     }
 
-	/**
-	 * Set the field as bootstrap custom
-	 *
-	 * @param bool $custom
-	 * @return FormService
-	 */
-	public function custom(bool $custom = true): FormService
-	{
-		return $this->_set('custom', $custom);
-	}
+    /**
+     * Set the field as bootstrap custom
+     *
+     * @param bool $custom
+     * @return FormService
+     */
+    public function custom(bool $custom = true): FormService
+    {
+        return $this->_set('custom', $custom);
+    }
 
     /**
      * Set the size as lg

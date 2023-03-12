@@ -1,5 +1,5 @@
 {
-    "name": "netojose/laravel-bootstrap-4-forms",
+    "name": "cirrion/laravel-bootstrap-forms",
     "type": "package",
     "description": "Bootstrap 4 form builder for Laravel 5",
     "keywords": [
@@ -14,8 +14,8 @@
     "license": "MIT",
     "authors": [
         {
-            "name": "José Sousa",
-            "email": "sputinykster@gmail.com"
+            "name": "MC",
+            "email": ""
         }
     ],
     "version": "3.0.5",
@@ -23,16 +23,16 @@
     "require": {},
     "autoload": {
         "psr-4": {
-            "NetoJose\\Bootstrap4Forms\\": "src/"
+            "Cirrion\\LaravelBootstrapForms\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "NetoJose\\Bootstrap4Forms\\Bootstrap4FormsServiceProvider"
+                "Cirrion\\LaravelBootstrapForms\\LaravelBootstrapFormsServiceProvider"
             ],
             "aliases": {
-                "Form": "NetoJose\\Bootstrap4Forms\\Bootstrap4FormsFacade"
+                "Form": "Cirrion\\LaravelBootstrapForms\\LaravelBootstrapFormsFacade"
             }
         }
     }

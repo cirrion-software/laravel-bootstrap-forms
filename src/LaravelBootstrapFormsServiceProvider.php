@@ -1,23 +1,23 @@
 <?php
 
-namespace NetoJose\Bootstrap4Forms;
+namespace Cirrion\LaravelBootstrapForms;
 
 use Illuminate\Support\ServiceProvider;
 
-class Bootstrap4FormsServiceProvider extends ServiceProvider {
+class LaravelBootstrapFormsServiceProvider extends ServiceProvider
+{
 
     protected $defer = true;
 
     public function register()
     {
-        $this->app->singleton('bootstrap4-form', function() {
+        $this->app->singleton('bootstrap-form', function () {
             return new FormService();
         });
     }
 
     public function provides()
     {
-        return ['bootstrap4-form'];
+        return ['bootstrap-form'];
     }
-
 }
