@@ -3,8 +3,9 @@
 namespace Cirrion\LaravelBootstrapForms;
 
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Contracts\Support\DeferrableProvider;
 
-class LaravelBootstrapFormsServiceProvider extends ServiceProvider
+class LaravelBootstrapFormsServiceProvider extends ServiceProvider implements DeferrableProvider
 {
 
     protected $defer = true;
