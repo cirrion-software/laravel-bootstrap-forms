@@ -32,7 +32,7 @@
                 "Cirrion\\LaravelBootstrapForms\\LaravelBootstrapFormsServiceProvider"
             ],
             "aliases": {
-                "Form": "Cirrion\\LaravelBootstrapForms\\LaravelBootstrapFormsFacade"
+                "BSForm": "Cirrion\\LaravelBootstrapForms\\LaravelBootstrapFormsFacade"
             }
         }
     }
