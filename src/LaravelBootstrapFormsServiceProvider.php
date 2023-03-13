@@ -2,6 +2,7 @@
 
 namespace Cirrion\LaravelBootstrapForms;
 
+use Cirrion\LaravelBootstrapForms\FormService;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Support\DeferrableProvider;
 
