@@ -355,7 +355,7 @@ class FormBuilder
         $attrs['class'] = $this->createAttrsList(
             $custom ? $this->customClass('wrapper') : '',
             $attrs['class'] ?? null,
-            $formInline ? 'input-group' : 'form-group'
+            $formInline ? 'input-group' : 'mb-3'
         );
         $attributes = $this->buildHtmlAttrs($attrs, false);
 
