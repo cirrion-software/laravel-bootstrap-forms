@@ -1,15 +1,12 @@
-# Bootstrap 4 forms for Laravel 5/6/7/8
+# Bootstrap 5 forms for Laravel 9
 
-[![Latest Version on Packagist][ico-version]][link-packagist]
-[![Total Downloads][ico-downloads]][link-downloads]
-
-This is a package for creating Bootstrap 4 styled form elements in Laravel 5/6.
+This is a package for creating Bootstrap 5 styled form elements in Laravel 9.
 
 ## Features
 
 -   Labels
 -   Error messages
--   Bootstrap 4 markup and classes (including state, colors, and sizes)
+-   Bootstrap 5 markup and classes (including state, colors, and sizes)
 -   Error validation messages
 -   Form fill (using Model instance, array or after form submission when a validation error occurs)
 -   Internationalization
@@ -21,7 +18,7 @@ This is a package for creating Bootstrap 4 styled form elements in Laravel 5/6.
 ### Before
 
 ```html
-<div class="form-group">
+<div>
     <label for="username">Username</label>
     <input
         type="text"
@@ -38,7 +35,7 @@ This is a package for creating Bootstrap 4 styled form elements in Laravel 5/6.
 ### After
 
 ```php
-Form::text('username', 'Username')
+BSForm::text('username', 'Username')
 ```
 
 ## Installation
@@ -46,32 +43,12 @@ Form::text('username', 'Username')
 #### Require the package using Composer.
 
 ```bash
-composer require netojose/laravel-bootstrap-4-forms
+composer require cirrion/laravel-bootstrap-forms
 ```
 
-### Laravel 5.5 or above
+### Laravel Autodiscovery
 
-If you is using Laravel 5.5, the auto discovery feature will make everything for you and your job is done, you can start using now. Else, follow the steps below to install.
-
-### Laravel 5.4
-
-#### Add the service provider to your config/app.php file
-
-```php
-'providers' => [
-    //...
-	NetoJose\Bootstrap4Forms\Bootstrap4FormsServiceProvider::class,
-],
-```
-
-#### Add the BootForm facade to the aliases array in config/app.php:
-
-```php
-'aliases' => [
-    //...
-    'Form' => NetoJose\Bootstrap4Forms\Bootstrap4FormsFacade::class,
-],
-```
+The auto discovery feature will make everything for you and your job is done, you can start using now.
 
 ## Usage
 
@@ -82,9 +59,9 @@ If you is using Laravel 5.5, the auto discovery feature will make everything for
 ```php
 // Opening a form using POST method
 
-{!!Form::open()!!}
+{!!BSForm::open()!!}
 // ... Form components here
-{!!Form::close()!!}
+{!!BSForm::close()!!}
 ```
 
 > Opening the form will add \_token field automatically for you
@@ -93,10 +70,10 @@ If you is using Laravel 5.5, the auto discovery feature will make everything for
 
 ```php
 // Making all inputs inline
-{!!Form::open()->formInline()!!}
+{!!BSForm::open()->formInline()!!}
 
 // You can use FALSE to turn off disable form inline
-{!!Form::open()->formInline(false)!!}
+{!!BSForm::open()->formInline(false)!!}
 ```
 
 #### Fieldset
@@ -107,9 +84,9 @@ If you is using Laravel 5.5, the auto discovery feature will make everything for
 
 ```php
 // Example
-{!!Form::fieldsetOpen('Legend title')!!}
+{!!BSForm::fieldsetOpen('Legend title')!!}
 // ... fieldset content
-{!!Form::fieldsetClose()!!}
+{!!BSForm::fieldsetClose()!!}
 ```
 
 ### Basic inputs
@@ -124,7 +101,7 @@ If you is using Laravel 5.5, the auto discovery feature will make everything for
 
 ```php
 // Example
-{!!Form::text('name', 'User name')!!}
+{!!BSForm::text('name', 'User name')!!}
 ```
 
 ##### Textarea
@@ -137,7 +114,7 @@ If you is using Laravel 5.5, the auto discovery feature will make everything for
 
 ```php
 // Example
-{!!Form::textarea('description', 'Description')!!}
+{!!BSForm::textarea('description', 'Description')!!}
 ```
 
 ##### Select
@@ -151,7 +128,7 @@ If you is using Laravel 5.5, the auto discovery feature will make everything for
 
 ```php
 // Example
-{!!Form::select('city', 'Choose your city', [1 => 'Gotham City', 2 => 'Springfield'])!!}
+{!!BSForm::select('city', 'Choose your city', [1 => 'Gotham City', 2 => 'Springfield'])!!}
 ```
 
 ##### Options
@@ -166,23 +143,23 @@ If you is using Laravel 5.5, the auto discovery feature will make everything for
 // Example
 
 // With array
-{!!Form::select('city', 'Choose your city')->options([1 => 'Gotham City', 2 => 'Springfield'])!!}
+{!!BSForm::select('city', 'Choose your city')->options([1 => 'Gotham City', 2 => 'Springfield'])!!}
 
 // With collection
 $cities = collect([1 => 'Gotham City', 2 => 'Springfield'])
-{!!Form::select('city', 'Choose your city')->options($cities)!!}
+{!!BSForm::select('city', 'Choose your city')->options($cities)!!}
 
 // With model collection
 $cities = \App\City::all();
-{!!Form::select('city', 'Choose your city')->options($cities)!!}
+{!!BSForm::select('city', 'Choose your city')->options($cities)!!}
 
 // Your model should have id and name attributes. If these keys are different, you can pass second and/or third parameters (you can use the second parameter to access some model acessor, also)
 $cities = \App\City::all();
-{!!Form::select('city', 'Choose your city')->options($cities, 'city_name', 'id_object_field')!!}
+{!!BSForm::select('city', 'Choose your city')->options($cities, 'city_name', 'id_object_field')!!}
 
 // When you are using collections, you can use prepend method (https://laravel.com/docs/5.8/collections#method-prepend) to add an first empty value, like "Choose your city"
 $cities = \App\City::all();
-{!!Form::select('city', 'Choose your city')->options($cities->prepend('Choose your city', ''))!!}
+{!!BSForm::select('city', 'Choose your city')->options($cities->prepend('Choose your city', ''))!!}
 ```
 
 ##### Checkbox
@@ -196,7 +173,7 @@ $cities = \App\City::all();
 
 ```php
 // Example
-{!!Form::checkbox('orange', 'Orange')!!}
+{!!BSForm::checkbox('orange', 'Orange')!!}
 ```
 
 ##### Radio
@@ -210,7 +187,7 @@ $cities = \App\City::all();
 
 ```php
 // Example
-{!!Form::radio('orange', 'Orange')!!}
+{!!BSForm::radio('orange', 'Orange')!!}
 ```
 
 ##### File
@@ -222,7 +199,7 @@ $cities = \App\City::all();
 
 ```php
 // Example
-{!!Form::file('doc', 'Document')!!}
+{!!BSForm::file('doc', 'Document')!!}
 ```
 
 #### Date inputs
@@ -235,7 +212,7 @@ $cities = \App\City::all();
 
 ```php
 // Example
-{!!Form::date('birthday', 'Birthday')!!}
+{!!BSForm::date('birthday', 'Birthday')!!}
 ```
 
 #### Tel inputs
@@ -248,7 +225,7 @@ $cities = \App\City::all();
 
 ```php
 // Example
-{!!Form::tel('number', 'Phone number')!!}
+{!!BSForm::tel('number', 'Phone number')!!}
 ```
 
 #### Time inputs
@@ -261,7 +238,7 @@ $cities = \App\City::all();
 
 ```php
 // Example
-{!!Form::time('hour', 'Meeting hour')!!}
+{!!BSForm::time('hour', 'Meeting hour')!!}
 ```
 
 #### URL inputs
@@ -274,7 +251,7 @@ $cities = \App\City::all();
 
 ```php
 // Example
-{!!Form::urlInput('website', 'You website')!!}
+{!!BSForm::urlInput('website', 'You website')!!}
 ```
 
 #### Range inputs
@@ -287,7 +264,7 @@ $cities = \App\City::all();
 
 ```php
 // Example
-{!!Form::range('name', 'User name')!!}
+{!!BSForm::range('name', 'User name')!!}
 ```
 
 ##### Hidden
@@ -299,7 +276,7 @@ $cities = \App\City::all();
 
 ```php
 // Example
-{!!Form::hidden('user_id')!!}
+{!!BSForm::hidden('user_id')!!}
 ```
 
 ##### Anchor
@@ -311,7 +288,7 @@ $cities = \App\City::all();
 
 ```php
 // Example
-{!!Form::anchor("Link via parameter", 'foo/bar')!!}
+{!!BSForm::anchor("Link via parameter", 'foo/bar')!!}
 ```
 
 ##### Buttons
@@ -326,21 +303,21 @@ $cities = \App\City::all();
 
 ```php
 // Example
-{!!Form::submit("Send form")!!}
+{!!BSForm::submit("Send form")!!}
 ```
 
 ###### Button
 
 ```php
 // Example
-{!!Form::button("Do something", "warning", "lg")!!}
+{!!BSForm::button("Do something", "warning", "lg")!!}
 ```
 
 ###### Reset
 
 ```php
 // Example
-{!!Form::reset("Clear form")!!}
+{!!BSForm::reset("Clear form")!!}
 ```
 
 ### Chainable methods
@@ -358,11 +335,11 @@ $cities = \App\City::all();
 
 // With initial data using a Model instance
 $user = User::find(1);
-{!!Form::open()->fill($user)!!}
+{!!BSForm::open()->fill($user)!!}
 
 // With initial array data
 $user = ['name' => 'Jesus', 'age' => 33];
-{!!Form::open()->fill($user)!!}
+{!!BSForm::open()->fill($user)!!}
 ```
 
 ### Url
@@ -375,7 +352,7 @@ Use in anchors and forms openings
 
 ```php
 // Example
-{!!Form::anchor("Link via url")->url('foo/bar')!!}
+{!!BSForm::anchor("Link via url")->url('foo/bar')!!}
 ```
 
 ### Route
@@ -388,7 +365,7 @@ Use in anchors and forms openings
 
 ```php
 // Example
-{!!Form::anchor("Link via route")->route('home')!!}
+{!!BSForm::anchor("Link via route")->route('home')!!}
 ```
 
 ### Error Bag
@@ -401,7 +378,7 @@ Use if you have more then one form per page. You set an identifier for each form
 
 ```php
 // Example: attach this form to a error bag called "registerErrorBag"
-{!!Form::open()->route('register.post')->errorBag("registerErrorBag")!!}
+{!!BSForm::open()->route('register.post')->errorBag("registerErrorBag")!!}
 
 // ------------------------------------------------------
 
@@ -455,7 +432,7 @@ Show all errors inside a panel
 
 ```php
 // Example
-{!!Form::errors("The form has errors")!!}
+{!!BSForm::errors("The form has errors")!!}
 ```
 
 ### Disable validation messages
@@ -468,10 +445,10 @@ Disable success/error status and validation error message
 
 ```php
 // Example
-{!!Form::text('username', 'User name')->disableValidation()!!}
+{!!BSForm::text('username', 'User name')->disableValidation()!!}
 
 // You can use FALSE to turn off disable validation (to enable it)
-{!!Form::text('username', 'User name')->disableValidation(false)!!}
+{!!BSForm::text('username', 'User name')->disableValidation(false)!!}
 ```
 
 ### Checked
@@ -486,10 +463,10 @@ Set the checkbox/radio checked status
 // Examples
 
 // Using readonly field
-{!!Form::checkbox('agree', 'I agree')->checked()!!}
+{!!BSForm::checkbox('agree', 'I agree')->checked()!!}
 
 // You can use FALSE to turn off checked status
-{!!Form::checkbox('agree', 'I agree')->checked(false)!!}
+{!!BSForm::checkbox('agree', 'I agree')->checked(false)!!}
 ```
 
 ### Inline
@@ -498,12 +475,12 @@ Set the checkbox/radio checked status
 
 ```php
 // Examples
-{!!Form::radio('orange', 'Orange')->inline()!!}
+{!!BSForm::radio('orange', 'Orange')->inline()!!}
 
-{!!Form::checkbox('orange', 'Orange')->inline()!!}
+{!!BSForm::checkbox('orange', 'Orange')->inline()!!}
 
 // You can use FALSE to turn off inline status
-{!!Form::checkbox('orange', 'Orange')->inline(false)!!}
+{!!BSForm::checkbox('orange', 'Orange')->inline(false)!!}
 ```
 
 ### Placeholder
@@ -514,14 +491,14 @@ Set the checkbox/radio checked status
 
 ```php
 // Example
-{!!Form::text('name', 'Name')->placeholder('Input placeholder')!!}
+{!!BSForm::text('name', 'Name')->placeholder('Input placeholder')!!}
 ```
 
 ### Select Multiple
 
 ```php
 // Example
-{!!Form::select('city', 'Choose your city', [1 => 'Gotham City', 2 => 'Springfield'])->multiple()!!}
+{!!BSForm::select('city', 'Choose your city', [1 => 'Gotham City', 2 => 'Springfield'])->multiple()!!}
 ```
 
 ### Locale
@@ -530,7 +507,7 @@ Using locale, the package will look for a resources/lang/{CURRENT_LANG}/forms/us
 
 ```php
 // Example
-{!!Form::open()->locale('forms.user')!!}
+{!!BSForm::open()->locale('forms.user')!!}
 ```
 
 ### Help Text
@@ -541,7 +518,7 @@ Using locale, the package will look for a resources/lang/{CURRENT_LANG}/forms/us
 
 ```php
 // Example
-{!!Form::text('name', 'Name')->help('Help text here')!!}
+{!!BSForm::text('name', 'Name')->help('Help text here')!!}
 ```
 
 ### Custom attributes
@@ -552,7 +529,7 @@ Using locale, the package will look for a resources/lang/{CURRENT_LANG}/forms/us
 
 ```php
 // Example
-{!!Form::text('name', 'Name')->attrs(['data-foo' => 'bar', 'rel'=> 'baz'])!!}
+{!!BSForm::text('name', 'Name')->attrs(['data-foo' => 'bar', 'rel'=> 'baz'])!!}
 ```
 
 ### Custom attributes in wrapper div (\<div class="form-group">...\</div>)
@@ -563,7 +540,7 @@ Using locale, the package will look for a resources/lang/{CURRENT_LANG}/forms/us
 
 ```php
 // Example
-{!!Form::text('name', 'Name')->wrapperAttrs(['data-foo' => 'bar', 'id'=> 'name-wrapper'])!!}
+{!!BSForm::text('name', 'Name')->wrapperAttrs(['data-foo' => 'bar', 'id'=> 'name-wrapper'])!!}
 ```
 
 ### Readonly
@@ -576,10 +553,10 @@ Using locale, the package will look for a resources/lang/{CURRENT_LANG}/forms/us
 // Examples
 
 // Using readonly field
-{!!Form::text('name', 'Name')->readonly()!!}
+{!!BSForm::text('name', 'Name')->readonly()!!}
 
 // You can use FALSE to turn off readonly status
-{!!Form::text('name', 'Name')->readonly(false)!!}
+{!!BSForm::text('name', 'Name')->readonly(false)!!}
 ```
 
 ### Disabled
@@ -592,13 +569,13 @@ Using locale, the package will look for a resources/lang/{CURRENT_LANG}/forms/us
 // Examples
 
 // Disabling a field
-{!!Form::text('name', 'Name')->disabled()!!}
+{!!BSForm::text('name', 'Name')->disabled()!!}
 
 // Disabling a fieldset
-{!!Form::fieldsetOpen('User data')->disabled()!!}
+{!!BSForm::fieldsetOpen('User data')->disabled()!!}
 
 // You can use FALSE to turn off disabled status
-{!!Form::text('name', 'Name')->disabled(false)!!}
+{!!BSForm::text('name', 'Name')->disabled(false)!!}
 ```
 
 ### Block
@@ -611,10 +588,10 @@ Using locale, the package will look for a resources/lang/{CURRENT_LANG}/forms/us
 // Examples
 
 // Disabling a field
-{!!Form::text('name', 'Name')->block()!!}
+{!!BSForm::text('name', 'Name')->block()!!}
 
 // You can use FALSE to turn off block status
-{!!Form::text('name', 'Name')->block(false)!!}
+{!!BSForm::text('name', 'Name')->block(false)!!}
 ```
 
 ### Required
@@ -627,13 +604,13 @@ Using locale, the package will look for a resources/lang/{CURRENT_LANG}/forms/us
 // Examples
 
 // Disabling a field
-{!!Form::text('name', 'Name')->required()!!}
+{!!BSForm::text('name', 'Name')->required()!!}
 
 // Disabling a fieldset
-{!!Form::fieldsetOpen('User data')->required()!!}
+{!!BSForm::fieldsetOpen('User data')->required()!!}
 
 // You can use FALSE to turn off required status
-{!!Form::text('name', 'Name')->required(false)!!}
+{!!BSForm::text('name', 'Name')->required(false)!!}
 ```
 
 ### AutoFill
@@ -655,13 +632,13 @@ complete list is in the spec mentioned above.
 // Examples
 
 // Switch off autocomplete for the form
-{!!Form::open()->autocomplete('off')!!}
+{!!BSForm::open()->autocomplete('off')!!}
 
 // Explicitly set a autocomplete value
-{!!Form::text('mobile', 'Mobile Number')->autocomplete('tel')!!}
+{!!BSForm::text('mobile', 'Mobile Number')->autocomplete('tel')!!}
 
 // Disable autocomplete for fields with valid names
-{!!Form::text('name', 'Name')->autocomplete('off')!!}
+{!!BSForm::text('name', 'Name')->autocomplete('off')!!}
 ```
 
 ### Id
@@ -672,7 +649,7 @@ complete list is in the spec mentioned above.
 
 ```php
 // Example
-{!!Form::text('name', 'Name')->id('user-name')!!}
+{!!BSForm::text('name', 'Name')->id('user-name')!!}
 ```
 
 ### Id prefix
@@ -683,7 +660,7 @@ complete list is in the spec mentioned above.
 
 ```php
 // Example
-{!!Form::open()->idPrefix('register')!!}
+{!!BSForm::open()->idPrefix('register')!!}
 ```
 
 ### Multipart
@@ -694,10 +671,10 @@ complete list is in the spec mentioned above.
 
 ```php
 // Examples
-{!!Form::open()->multipart()!!}
+{!!BSForm::open()->multipart()!!}
 
 // You can use FALSE to turn off multipart
-{!!Form::open()->multipart(false)!!}
+{!!BSForm::open()->multipart(false)!!}
 ```
 
 ### Method
@@ -708,22 +685,22 @@ complete list is in the spec mentioned above.
 
 ```php
 // Examples
-{!!Form::open()->method('get')!!}
-{!!Form::open()->method('post')!!}
-{!!Form::open()->method('put')!!}
-{!!Form::open()->method('patch')!!}
-{!!Form::open()->method('delete')!!}
+{!!BSForm::open()->method('get')!!}
+{!!BSForm::open()->method('post')!!}
+{!!BSForm::open()->method('put')!!}
+{!!BSForm::open()->method('patch')!!}
+{!!BSForm::open()->method('delete')!!}
 ```
 
 ### explicit HTTP verbs
 
 ```php
 // Examples
-{!!Form::open()->get()!!}
-{!!Form::open()->post()!!}
-{!!Form::open()->put()!!}
-{!!Form::open()->patch()!!}
-{!!Form::open()->delete()!!}
+{!!BSForm::open()->get()!!}
+{!!BSForm::open()->post()!!}
+{!!BSForm::open()->put()!!}
+{!!BSForm::open()->patch()!!}
+{!!BSForm::open()->delete()!!}
 ```
 
 ### Color
@@ -734,24 +711,24 @@ complete list is in the spec mentioned above.
 
 ```php
 // Examples
-{!!Form::button("Do something")->color("warning")!!}
+{!!BSForm::button("Do something")->color("warning")!!}
 
-{!!Form::button("Do something")->color("primary")!!}
+{!!BSForm::button("Do something")->color("primary")!!}
 ```
 
 ### explicit color
 
 ```php
 // Examples
-{!!Form::button("Button label")->warning()!!}
-{!!Form::button("Button label")->outline()!!}
-{!!Form::button("Button label")->success()!!
-{!!Form::button("Button label")->danger()!!}
-{!!Form::button("Button label")->secondary()!!}
-{!!Form::button("Button label")->info()!!}
-{!!Form::button("Button label")->light()!!}
-{!!Form::button("Button label")->dark()!!}
-{!!Form::button("Button label")->link()!!}
+{!!BSForm::button("Button label")->warning()!!}
+{!!BSForm::button("Button label")->outline()!!}
+{!!BSForm::button("Button label")->success()!!
+{!!BSForm::button("Button label")->danger()!!}
+{!!BSForm::button("Button label")->secondary()!!}
+{!!BSForm::button("Button label")->info()!!}
+{!!BSForm::button("Button label")->light()!!}
+{!!BSForm::button("Button label")->dark()!!}
+{!!BSForm::button("Button label")->link()!!}
 ```
 
 ### Size
@@ -762,17 +739,17 @@ complete list is in the spec mentioned above.
 
 ```php
 // Examples
-{!!Form::button("Do something")->size("sm")!!}
+{!!BSForm::button("Do something")->size("sm")!!}
 
-{!!Form::button("Do something")->size("lg")!!}
+{!!BSForm::button("Do something")->size("lg")!!}
 ```
 
 ### Explicit size
 
 ```php
 // Examples
-{!!Form::button("Button label")->sm()!!}
-{!!Form::button("Button label")->lg()!!}
+{!!BSForm::button("Button label")->sm()!!}
+{!!BSForm::button("Button label")->lg()!!}
 ```
 
 ### Type
@@ -785,13 +762,13 @@ complete list is in the spec mentioned above.
 // Examples
 
 // Password field
-{!!Form::text('password', 'Your password')->type('password')!!}
+{!!BSForm::text('password', 'Your password')->type('password')!!}
 
 // Number field
-{!!Form::text('age', 'Your age')->type('number')!!}
+{!!BSForm::text('age', 'Your age')->type('number')!!}
 
 // Email field
-{!!Form::text('email', 'Your email')->type('email')!!}
+{!!BSForm::text('email', 'Your email')->type('email')!!}
 ```
 
 ### Min
@@ -804,7 +781,7 @@ Set min attribute for input
 
 ```php
 // Example
-{!!Form::text('age', 'Your age')->type('number')->min(18)!!}
+{!!BSForm::text('age', 'Your age')->type('number')->min(18)!!}
 ```
 
 ### Max
@@ -817,7 +794,7 @@ Set max attribute for input
 
 ```php
 // Example
-{!!Form::text('age', 'Your age')->type('number')->max(18)!!}
+{!!BSForm::text('age', 'Your age')->type('number')->max(18)!!}
 ```
 
 ### Name
@@ -828,7 +805,7 @@ Set max attribute for input
 
 ```php
 // Examples
-{!!Form::text('text')->name('name')!!}
+{!!BSForm::text('text')->name('name')!!}
 ```
 
 ### Label
@@ -839,7 +816,7 @@ Set max attribute for input
 
 ```php
 // Examples
-{!!Form::text('age')->label('Your age')!!}
+{!!BSForm::text('age')->label('Your age')!!}
 ```
 
 ### Default Value
@@ -850,7 +827,7 @@ Set max attribute for input
 
 ```php
 // Example
-{!!Form::text('name', 'Your name')->value('Maria')!!}
+{!!BSForm::text('name', 'Your name')->value('Maria')!!}
 ```
 
 ### Render
@@ -863,7 +840,7 @@ Set max attribute for input
 // Examples
 
 // Number field
-{!!Form::render('text')->name('age')->label('Your age')!!}
+{!!BSForm::render('text')->name('age')->label('Your age')!!}
 ```
 
 ### Disable is-valid CSS Class
@@ -876,7 +853,7 @@ Set max attribute for input
 // Examples
 
 // Disable Bootstrap's is-valid CSS class
-{!!Form::text('name', 'Name')->disableIsValid()!!}
+{!!BSForm::text('name', 'Name')->disableIsValid()!!}
 ```
 
 ### Chaining properties
@@ -886,15 +863,15 @@ You can use chaining feature to use a lot of settings for each component
 ```php
 // Examples
 
-{!!Form::open()->locale('forms.user')->put()->multipart()->route('user.add')->data($user)!!}
+{!!BSForm::open()->locale('forms.user')->put()->multipart()->route('user.add')->data($user)!!}
 
-{!!Form::text('name', 'Name')->placeholder('Type your name')->lg()!!}
+{!!BSForm::text('name', 'Name')->placeholder('Type your name')->lg()!!}
 
-{!!Form::anchor("Link as a button")->sm()->info()->outline()!!}
+{!!BSForm::anchor("Link as a button")->sm()->info()->outline()!!}
 
-{!!Form::submit('Awesome button')->id('my-btn')->disabled()->danger()->lg()!!}
+{!!BSForm::submit('Awesome button')->id('my-btn')->disabled()->danger()->lg()!!}
 
-{!!Form::close()!!}
+{!!BSForm::close()!!}
 ```
 
 [ico-version]: https://img.shields.io/packagist/v/netojose/laravel-bootstrap-4-forms.svg?style=flat-square
